@@ -27,15 +27,18 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "check": "npm pack",
+    "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\"",
+    "check": "npm run build && npm pack --dry-run",
+    "prepublishOnly": "npm run build",
     "prepack": "npm run build",
     "version:patch": "npm version patch",
     "version:minor": "npm version minor",
     "version:major": "npm version major",
-    "publish:npm": "npm publish",
-    "release:patch": "npm version patch && npm publish",
-    "release:minor": "npm version minor && npm publish",
-    "release:major": "npm version major && npm publish"
+    "publish:all": "npm run clean && npm run build && npm pack --dry-run --ignore-scripts && npm publish --ignore-scripts",
+    "publish:npm": "npm run publish:all",
+    "release:patch": "npm run version:patch && npm run publish:npm",
+    "release:minor": "npm run version:minor && npm run publish:npm",
+    "release:major": "npm run version:major && npm run publish:npm"
   },
   "author": "Ravi Verma (Whatsveg)",
   "license": "ISC",
