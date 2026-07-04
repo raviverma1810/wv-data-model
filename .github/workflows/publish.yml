@@ -10,8 +10,8 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     env:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      WV_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      WV_TOKEN: ${{ secrets.WV_TOKEN }}
 
     permissions:
       contents: read
@@ -31,6 +31,19 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Configure npm auth
+        run: |
+          if [ -n "$NPM_TOKEN" ]; then
+            TOKEN="$NPM_TOKEN"
+          elif [ -n "$WV_TOKEN" ]; then
+            TOKEN="$WV_TOKEN"
+          else
+            echo "Missing npm token. Add NPM_TOKEN or WV_TOKEN in GitHub Actions secrets."
+            exit 1
+          fi
+          echo "//registry.npmjs.org/:_authToken=${TOKEN}" > "$HOME/.npmrc"
+          chmod 0600 "$HOME/.npmrc"
 
       - name: Verify npm authentication
         run: npm whoami --registry=https://registry.npmjs.org/
