@@ -61,7 +61,7 @@ const UnitSchema = new Schema<UnitAttributes>(
     },
     description: {
       type: String,
-      default: "How to use this unit in product quantity: "
+      default: "How to use this unit in product quantity:"
     },
     sub_units: [subunitSchema],
     status: {
