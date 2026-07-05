@@ -9,6 +9,7 @@ export interface SubUnitAttributes {
 
 export interface UnitAttributes {
   name: string;
+  display_name: string;
   description?: string;
   sub_units?: SubUnitAttributes[];
   status?: boolean;
@@ -50,7 +51,13 @@ const UnitSchema = new Schema<UnitAttributes>(
     name: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
+      maxlength: 250
+    },
+    display_name: {
+      type: String,
+      required: true,
+      maxlength: 10
     },
     description: {
       type: String,
@@ -73,12 +80,12 @@ UnitSchema.post("save", async function (doc) {
   if (!doc.sub_units || doc.sub_units.length === 0) {
     const subUnits = [
       {
-        name: "1".concat(doc.name),
+        name: "1".concat(doc.display_name),
         calculation_factor: 1,
         index: 99
       },
       {
-        name: "2".concat(doc.name),
+        name: "2".concat(doc.display_name),
         calculation_factor: 2,
         index: 100
       }
