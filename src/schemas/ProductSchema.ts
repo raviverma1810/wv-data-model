@@ -9,6 +9,7 @@ export interface ProductAttributes {
   image_url?: string;
   base_price: number;
   base_unit: Types.ObjectId;
+  default_sub_unit: string;
   category: Types.ObjectId;
   is_global?: boolean;
   status?: boolean;
@@ -57,6 +58,10 @@ const ProductSchema = new Schema<ProductAttributes>(
       type: Schema.Types.ObjectId,
       ref: "Unit",
       required: true
+    },
+    default_sub_unit: {
+        type: String,
+        required:true
     },
     category: {
       type: Schema.Types.ObjectId,
