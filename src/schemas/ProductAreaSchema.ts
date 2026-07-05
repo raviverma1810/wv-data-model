@@ -7,6 +7,7 @@ export interface ProductAreaAttributes {
   mrp?: number;
   price?: number;
   status?: boolean;
+  unit_sold?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -40,6 +41,10 @@ const ProductAreaSchema = new Schema<ProductAreaAttributes>(
     status: {
       type: Boolean,
       default: true
+    },
+    unit_sold: {
+      type: Number,
+      default: 0
     }
   },
   { timestamps: true }
