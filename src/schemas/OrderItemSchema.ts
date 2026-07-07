@@ -100,35 +100,4 @@ const OrderItemSchema = new Schema<OrderItemAttributes>(
   },
 );
 
-// Post save hook to calculate selling_price and total_price based on base_selling_price, calculation_factor, and quantity
-OrderItemSchema.post("save", async function (doc) {
-  const Unit = (await import("../models/Unit.js")).default as any;
-  const unit = await Unit.findById(doc.base_unit_id);
-  if (unit) {
-    const subUnit = unit.sub_units.find((sub: any) => sub.name === doc.sub_unit_id);
-    if (subUnit) {
-      const sellingPrice = Math.round(doc.base_selling_price * doc.calculation_factor);
-      const totalPrice = Math.round(sellingPrice * doc.quantity);
-      doc.selling_price = sellingPrice;
-      doc.total_price = totalPrice;
-      await doc.save();
-    }
-  }
-  // Update sub_total total and total_savings in Order collection
-  const Order = (await import("../models/Order.js")).default as any;
-  const order = await Order.findById(doc.order_id);
-  if (order) {
-    const orderItems = await OrderItem.find({ order_id: doc.order_id });
-    const subTotal = orderItems.reduce((acc: number, item: any) => acc + item.total_price, 0);
-    const totalSavings = orderItems.reduce(
-      (acc: number, item: any) => acc + ((item.base_mrp * item.calculation_factor) - item.selling_price) * item.quantity,
-      0,
-    );
-    order.sub_total = subTotal;
-    order.total_savings = Math.round(totalSavings);
-    order.total = subTotal + order.delivery_fee;
-    await order.save();
-  }
-});
-
 export default OrderItemSchema;

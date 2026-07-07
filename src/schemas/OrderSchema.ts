@@ -1,31 +1,31 @@
 import { Schema, Types } from "mongoose";
 
-export interface OrderAttributes {
-  user_id: Types.ObjectId;
-  city_id: Types.ObjectId;
-  pincode_id: Types.ObjectId;
-  area_id: Types.ObjectId;
-  store_id: Types.ObjectId;
-  address: {
-    label: string;
-    address: string;
-    landmark: string;
-    geo_latitude: number;
-    geo_longitude: number;
-  };
-  order_status: "placed" | "packed" | "dispatched" | "delivered" | "cancelled";
-  delivery_date?: Date;
-  delivery_time?: string;
-  delivery_status: "pending" | "shipped" | "delivered" | "cancelled";
-  payment_method: "cod" | "online";
-  payment_status: "pending" | "paid" | "failed";
-  sub_total?: number;
-  delivery_fee?: number;
-  total_savings?: number;
-  total?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
+  export interface OrderAttributes {
+    user_id: Types.ObjectId;
+    city_id: Types.ObjectId;
+    pincode_id: Types.ObjectId;
+    area_id: Types.ObjectId;
+    store_id: Types.ObjectId;
+    address: {
+      label: string;
+      address: string;
+      landmark: string;
+      geo_latitude: number;
+      geo_longitude: number;
+    };
+    order_status: "placed" | "packed" | "dispatched" | "delivered" | "cancelled";
+    delivery_date?: Date;
+    delivery_time?: string;
+    delivery_status: "pending" | "shipped" | "delivered" | "cancelled";
+    payment_method: "cod" | "online";
+    payment_status: "pending" | "paid" | "failed";
+    sub_total?: number;
+    delivery_fee?: number;
+    total_savings?: number;
+    total?: number;
+    createdAt?: Date;
+    updatedAt?: Date;
+  }
 
 const OrderSchema = new Schema<OrderAttributes>(
   {
