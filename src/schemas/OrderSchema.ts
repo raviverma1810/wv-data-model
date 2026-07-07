@@ -5,6 +5,7 @@ export interface OrderAttributes {
   city_id: Types.ObjectId;
   pincode_id: Types.ObjectId;
   area_id: Types.ObjectId;
+  store_id: Types.ObjectId;
   address: {
     label: string;
     address: string;
@@ -43,6 +44,10 @@ const OrderSchema = new Schema<OrderAttributes>(
     area_id: {
       type: Schema.Types.ObjectId,
       ref: "Area",
+    },
+    store_id: {
+      type: Schema.Types.ObjectId,
+      ref: "Store",
     },
     address: {
       label: {

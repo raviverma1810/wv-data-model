@@ -22,4 +22,19 @@ export type { UnitModel } from "./Unit";
 export { default as User } from "./User";
 export type { UserModel } from "./User";
 
+export {default as Order} from "./Order";
+export type { OrderModel } from "./Order";
+
+export {default as OrderItem} from "./OrderItem";
+export type { OrderItemModel } from "./OrderItem";
+
+export {default as DeliveryEarningPoints} from "./DeliveryEarningPoints";
+export type { DeliveryEarningPointsModel } from "./DeliveryEarningPoints";
+
+export {default as DeliveryPartner} from "./DeliveryPartner";
+export type { DeliveryPartnerModel } from "./DeliveryPartner";
+
+export {default as DeliveryRedeemTransaction} from "./DeliveryRedeemTransaction";
+export type { DeliveryRedeemTransactionModel } from "./DeliveryRedeemTransaction";
+
 export * from "./mappings";

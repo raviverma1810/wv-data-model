@@ -4,6 +4,7 @@ import OrderItem from "../models/OrderItem.js";
 export interface OrderItemAttributes {
   order_id: Types.ObjectId;
   area_id: Types.ObjectId;
+  store_id: Types.ObjectId;
   product_id: Types.ObjectId;
   name: string;
   name_local_language?: string;
@@ -30,6 +31,11 @@ const OrderItemSchema = new Schema<OrderItemAttributes>(
     area_id: {
       type: Schema.Types.ObjectId,
       ref: "Area",
+      required: true,
+    },
+    store_id: {
+      type: Schema.Types.ObjectId,
+      ref: "Store",
       required: true,
     },
     product_id: {

@@ -9,6 +9,8 @@ export interface DeliveryEarningPointsAttributes {
   total_redeemed_points: number;
   total_available_points: number;
   status?: boolean;
+  closed: boolean;
+  closedAt?: Date;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -44,6 +46,13 @@ const DeliveryEarningPointsSchema = new Schema<DeliveryEarningPointsAttributes>(
     status: {
       type: Boolean,
       default: true,
+    },
+    closed: {
+      type: Boolean,
+      default: false,
+    },
+    closedAt: {
+      type: Date,
     },
   },
   {

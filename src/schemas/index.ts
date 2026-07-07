@@ -36,3 +36,18 @@ export type { ProductAreaAttributes } from "./ProductAreaSchema";
 
 export { default as StoreAreaSchema } from "./StoreAreaSchema";
 export type { StoreAreaAttributes } from "./StoreAreaSchema";
+
+export { default as OrderSchema } from "./OrderSchema";
+export type { OrderAttributes } from "./OrderSchema";
+
+export { default as OrderItemSchema } from "./OrderItemSchema";
+export type { OrderItemAttributes } from "./OrderItemSchema";
+
+export { default as DeliveryEarningPointsSchema } from "./DeliveryEarningPoints";
+export type { DeliveryEarningPointsAttributes } from "./DeliveryEarningPoints";
+
+export { default as DeliveryPartnerSchema } from "./DeliveryPartner";
+export type { DeliveryPartnerAttributes } from "./DeliveryPartner";
+
+export { default as DeliveryRedeemTransactionSchema } from "./DeliveryRedeemTransaction";
+export type { DeliveryRedeemTransactionAttributes } from "./DeliveryRedeemTransaction";
