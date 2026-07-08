@@ -19,6 +19,7 @@ export interface UserAttributes {
   city: Types.ObjectId;
   pincode: Types.ObjectId;
   area: Types.ObjectId;
+  recentlyViewedProducts?: Types.ObjectId[];
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -94,6 +95,10 @@ const UserSchema = new Schema<UserAttributes>(
       type: Schema.Types.ObjectId,
       ref: "Area",
       required: true
+    },
+    recentlyViewedProducts: {
+      type: [Schema.Types.ObjectId],
+      ref: "Product"
     }
   },
   {
