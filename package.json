@@ -19,6 +19,11 @@
       "types": "./dist/schemas/index.d.ts",
       "require": "./dist/schemas/index.js",
       "default": "./dist/schemas/index.js"
+    },
+    "./constants": {
+      "types": "./dist/constants/index.d.ts",
+      "require": "./dist/constants/index.js",
+      "default": "./dist/constants/index.js"
     }
   },
   "files": [
