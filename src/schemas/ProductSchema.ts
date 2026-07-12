@@ -13,10 +13,13 @@ export interface ProductAttributes {
   category: Types.ObjectId;
   is_global?: boolean;
   status?: boolean;
+  quality_grade?: "A" | "B" | "C";
   can_be_subscribed?: boolean;
   tags?: string[];
+  similarity_tags?: string[];
   seasonMonths?: string[];
   searchKeywords?: string[];
+  sold_units?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -26,6 +29,7 @@ const ProductSchema = new Schema<ProductAttributes>(
     name: {
       type: String,
       required: true,
+      unique: true,
       maxlength: 250,
     },
     name_hindi: {
@@ -80,11 +84,20 @@ const ProductSchema = new Schema<ProductAttributes>(
       type: Boolean,
       default: false,
     },
+    quality_grade: {
+      type: String,
+      enum: ["A", "B", "C"],
+      default: "B",
+    },
     can_be_subscribed: {
       type: Boolean,
       default: false,
     },
     tags: {
+      type: [String],
+      default: [],
+    },
+    similarity_tags: {
       type: [String],
       default: [],
     },
@@ -95,6 +108,10 @@ const ProductSchema = new Schema<ProductAttributes>(
     searchKeywords: {
       type: [String],
       default: [],
+    },
+    sold_units: {
+      type: Number,
+      default: 0,
     },
   },
   {
