@@ -13,6 +13,7 @@ export interface ProductAttributes {
   category: Types.ObjectId;
   is_global?: boolean;
   status?: boolean;
+  can_be_subscribed?: boolean;
   tags?: string[];
   seasonMonths?: string[];
   searchKeywords?: string[];
@@ -76,6 +77,10 @@ const ProductSchema = new Schema<ProductAttributes>(
       default: false,
     },
     status: {
+      type: Boolean,
+      default: false,
+    },
+    can_be_subscribed: {
       type: Boolean,
       default: false,
     },
