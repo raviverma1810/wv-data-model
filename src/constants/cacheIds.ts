@@ -20,6 +20,9 @@ export const CACHE_IDS = {
   PRODUCTS_RECOMMENDED_AREA: (areaId: string) => `wv-products-recommended-area-cache-${areaId}`,
   PRODUCTS_RECOMMENDED_AREA_CATEGORY: (areaId: string, categoryId: string) => `wv-products-recommended-category-cache-${areaId}-${categoryId}`,
   USER_RECENT_VISITED_PRODUCTS: (userId: string) => `wv-user-recent-visited-products-cache-${userId}`,
+  USER_WALLET_BALANCE: (userId: string) => `wv-user-wallet-balance-cache-${userId}`,
+  USER_WALLET_TRANSACTIONS: (userId: string) => `wv-user-wallet-transactions-cache-${userId}`,
+  USER_WALLET_TRANSACTION_DETAILS: (userId: string, transactionId: string) => `wv-user-wallet-transaction-details-cache-${userId}-${transactionId}`,
   ORDERS_RECENT_USER: (userId: string) => `wv-orders-recent-user-cache-${userId}`,
   ORDER_DETAILS_USER_ORDER_ID: (userId: string, orderId: string) => `wv-order-details-user-cache-${userId}-${orderId}`,
 };

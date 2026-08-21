@@ -17,12 +17,16 @@ import { Schema, Types } from "mongoose";
     delivery_date?: Date;
     delivery_time?: string;
     delivery_status: "pending" | "shipped" | "delivered" | "cancelled";
-    payment_method: "cod" | "online";
+    payment_method: "cod" | "online" | "wallet";
     payment_status: "pending" | "paid" | "failed";
     sub_total?: number;
     delivery_fee?: number;
+    handling_fee?: number;
     total_savings?: number;
     total?: number;
+    remarks?: string;
+    cancelled_at?: Date;
+    cancellation_reason?: string;
     createdAt?: Date;
     updatedAt?: Date;
   }
@@ -90,7 +94,7 @@ const OrderSchema = new Schema<OrderAttributes>(
 
     payment_method: {
       type: String,
-      enum: ["cod", "online"],
+      enum: ["cod", "online", "wallet"],
     },
     payment_status: {
       type: String,
@@ -104,12 +108,27 @@ const OrderSchema = new Schema<OrderAttributes>(
       type: Number,
       default: 20,
     },
+    handling_fee: {
+      type: Number,
+      default: 2,
+    },
     total_savings: {
       type: Number,
       default: 0,
     },
     total: {
       type: Number,
+    },
+    remarks: {
+      type: String,
+      default: "",
+    },
+    cancelled_at: {
+      type: Date,
+    },
+    cancellation_reason: {
+      type: String,
+      default: "",
     },
   },
   {

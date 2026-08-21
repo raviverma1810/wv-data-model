@@ -6,6 +6,8 @@ export interface StoreAttributes {
   name_hindi: string;
   city: Types.ObjectId;
   address: string;
+  geo_latitude?: number;
+  geo_longitude?: number;
   phone: string;
   owner_name: string;
   owner_email: string;
@@ -22,62 +24,70 @@ const StoreSchema = new Schema<StoreAttributes>(
       type: String,
       required: true,
       unique: true,
-      maxlength: 250
+      maxlength: 250,
     },
     name_local_language: {
       type: String,
-      maxlength: 250
+      maxlength: 250,
     },
     name_hindi: {
       type: String,
       required: true,
-      maxlength: 250
+      maxlength: 250,
     },
     city: {
       type: Schema.Types.ObjectId,
       ref: "City",
-      required: true
+      required: true,
     },
     address: {
       type: String,
       required: true,
-      maxlength: 500
+      maxlength: 500,
+    },
+    geo_latitude: {
+      type: Number,
+      default: 0,
+    },
+    geo_longitude: {
+      type: Number,
+      default: 0,
     },
     phone: {
       type: String,
       required: true,
       unique: true,
-      maxlength: 15
+      maxlength: 15,
     },
     owner_name: {
       type: String,
       required: true,
-      maxlength: 250
+      maxlength: 250,
     },
     owner_email: {
       type: String,
       required: true,
-      maxlength: 100
+      maxlength: 100,
     },
     owner_phone: {
       type: String,
       required: true,
-      maxlength: 15
+      maxlength: 15,
     },
     admin_approved: {
       type: Boolean,
-      default: false
+      default: false,
     },
     status: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   {
     timestamps: true,
     toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-  }
+    toObject: { virtuals: true },
+  },
 );
 
 export default StoreSchema;

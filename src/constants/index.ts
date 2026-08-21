@@ -1,1 +1,1 @@
-export { CACHE_IDS} from "./cacheIds";
+export { CACHE_IDS } from "./cacheIds";

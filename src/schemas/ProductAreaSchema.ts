@@ -9,6 +9,7 @@ export interface ProductAreaAttributes {
   status?: boolean;
   unit_sold?: number;
   rating?: number;
+  in_stock?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -17,44 +18,48 @@ const ProductAreaSchema = new Schema<ProductAreaAttributes>(
   {
     name_local_language: {
       type: String,
-      maxlength: 250
+      maxlength: 250,
     },
     product: {
       type: Schema.Types.ObjectId,
       ref: "Product",
-      required: true
+      required: true,
     },
     area: {
       type: Schema.Types.ObjectId,
       ref: "Area",
-      required: true
+      required: true,
     },
     mrp: {
       type: Number,
       default: 0,
-      maxlength: 5
+      maxlength: 5,
     },
     price: {
       type: Number,
       default: 0,
-      maxlength: 5
+      maxlength: 5,
     },
     status: {
       type: Boolean,
-      default: true
+      default: true,
     },
     unit_sold: {
       type: Number,
-      default: 0
+      default: 0,
     },
     rating: {
       type: Number,
       default: 4.2,
       min: 0,
-      max: 5
-    }
+      max: 5,
+    },
+    in_stock: {
+      type: Boolean,
+      default: true,
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default ProductAreaSchema;

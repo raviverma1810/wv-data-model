@@ -20,6 +20,7 @@ export interface UserAttributes {
   pincode: Types.ObjectId;
   area: Types.ObjectId;
   recentlyViewedProducts?: Types.ObjectId[];
+  prefferedSecondLanguage?: "native" | "hindi";
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -29,83 +30,88 @@ const UserSchema = new Schema<UserAttributes>(
     name: {
       type: String,
       required: true,
-      maxlength: 250
+      maxlength: 250,
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      maxlength: 100
+      maxlength: 100,
     },
     emailVerified: {
       type: Boolean,
-      default: false
+      default: false,
     },
     mobile: {
       type: String,
-      maxlength: 15
+      maxlength: 15,
     },
     alternateMobile: {
       type: String,
-      maxlength: 15
+      maxlength: 15,
     },
     mobileVerified: {
       type: Boolean,
-      default: false
+      default: false,
     },
     password: {
       type: String,
       required: true,
-      maxlength: 100
+      maxlength: 100,
     },
     role: {
       type: String,
       enum: ["user", "admin", "superadmin"],
-      default: "user"
+      default: "user",
     },
     addressLabel: {
       type: String,
-      maxlength: 100
+      maxlength: 100,
     },
     address: {
       type: String,
-      maxlength: 500
+      maxlength: 500,
     },
     landmark: {
       type: String,
-      maxlength: 250
+      maxlength: 250,
     },
     geo_latitude: {
-      type: Number
+      type: Number,
     },
     geo_longitude: {
-      type: Number
+      type: Number,
     },
     city: {
       type: Schema.Types.ObjectId,
       ref: "City",
-      required: true
+      required: true,
     },
     pincode: {
       type: Schema.Types.ObjectId,
       ref: "Pincode",
-      required: true
+      required: true,
     },
     area: {
       type: Schema.Types.ObjectId,
       ref: "Area",
-      required: true
+      required: true,
     },
     recentlyViewedProducts: {
       type: [Schema.Types.ObjectId],
-      ref: "Product"
-    }
+      ref: "Product",
+    },
+    prefferedSecondLanguage: {
+      type: String,
+      enum: ["native", "hindi"],
+      default: "native",
+    },
   },
   {
     timestamps: true,
     toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-  }
+    toObject: { virtuals: true },
+  },
 );
 
 export default UserSchema;

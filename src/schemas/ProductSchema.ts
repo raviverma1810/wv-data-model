@@ -20,6 +20,16 @@ export interface ProductAttributes {
   seasonMonths?: string[];
   searchKeywords?: string[];
   sold_units?: number;
+  images?: ProductImages[];
+  thumbnails?: ProductImages[];
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface ProductImages {
+  image_url: string;
+  image_order: number;
+  is_primary: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -112,6 +122,46 @@ const ProductSchema = new Schema<ProductAttributes>(
     sold_units: {
       type: Number,
       default: 0,
+    },
+    images: {
+      type: [
+        {
+          image_url: {
+            type: String,
+            required: true,
+            maxlength: 500,
+          },
+          image_order: {
+            type: Number,
+            required: true,
+          },
+          is_primary: {
+            type: Boolean,
+            default: false,
+          },
+        },
+      ],
+      default: [],
+    },
+    thumbnails: {
+      type: [
+        {
+          image_url: {
+            type: String,
+            required: true,
+            maxlength: 500,
+          },
+          image_order: {
+            type: Number,
+            required: true,
+          },
+          is_primary: {
+            type: Boolean,
+            default: false,
+          },
+        },
+      ],
+      default: [],
     },
   },
   {

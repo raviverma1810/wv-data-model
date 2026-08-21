@@ -51,3 +51,15 @@ export type { DeliveryPartnerAttributes } from "./DeliveryPartner";
 
 export { default as DeliveryRedeemTransactionSchema } from "./DeliveryRedeemTransaction";
 export type { DeliveryRedeemTransactionAttributes } from "./DeliveryRedeemTransaction";
+
+export { default as MetaDataSchema } from "./MetaDataSchema";
+export type { MetaDataAttributes } from "./MetaDataSchema";
+
+export { default as WalletSchema } from "./WalletSchema";
+export type { WalletAttributes } from "./WalletSchema";
+
+export { default as WalletTransactionSchema } from "./WalletTransactionSchema";
+export type { WalletTransactionAttributes } from "./WalletTransactionSchema";
+
+export { default as TicketSchema } from "./Tickets";
+export type { TicketAttributes } from "./Tickets";
