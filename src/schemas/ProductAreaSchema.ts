@@ -12,6 +12,17 @@ export interface ProductAreaAttributes {
   in_stock?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
+  // New attributes for future use
+  tags?: Types.ObjectId[];
+  similarity_tags?: string[];
+  search_keywords?: string[];
+
+  current_stock: number;
+  reserved_stock: number;
+  available_stock: number;
+  minimum_stock_level: number;
+  maximum_stock_level: number;
+  reorder_level: number;
 }
 
 const ProductAreaSchema = new Schema<ProductAreaAttributes>(
@@ -57,6 +68,42 @@ const ProductAreaSchema = new Schema<ProductAreaAttributes>(
     in_stock: {
       type: Boolean,
       default: true,
+    },
+    tags: {
+      type: [String],
+      default: [],
+    },
+    similarity_tags: {
+      type: [String],
+      default: [],
+    },
+    search_keywords: {
+      type: [String],
+      default: [],
+    },
+    current_stock: {
+      type: Number,
+      default: 0,
+    },
+    reserved_stock: {
+      type: Number,
+      default: 0,
+    },
+    available_stock: {
+      type: Number,
+      default: 0,
+    },
+    minimum_stock_level: {
+      type: Number,
+      default: 1,
+    },
+    maximum_stock_level: {
+      type: Number,
+      default: 0,
+    },
+    reorder_level: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true },

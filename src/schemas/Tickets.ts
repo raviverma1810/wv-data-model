@@ -22,7 +22,6 @@ const TicketSchema = new Schema<TicketAttributes>(
     user_id: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: true,
     },
     subject: {
       type: String,

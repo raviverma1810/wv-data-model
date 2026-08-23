@@ -5,8 +5,7 @@ export interface ProductAttributes {
   name_hindi: string;
   sku: string;
   description: string;
-  emoji: string;
-  image_url?: string;
+  emoji?: string;
   base_price: number;
   base_unit: Types.ObjectId;
   default_sub_unit: string;
@@ -15,21 +14,39 @@ export interface ProductAttributes {
   status?: boolean;
   quality_grade?: "A" | "B" | "C";
   can_be_subscribed?: boolean;
-  tags?: string[];
+  tags?: Types.ObjectId[];
   similarity_tags?: string[];
   seasonMonths?: string[];
   searchKeywords?: string[];
   sold_units?: number;
+  primary_image_url: string;
   images?: ProductImages[];
+  primary_thumbnail_url: string;
   thumbnails?: ProductImages[];
   createdAt?: Date;
   updatedAt?: Date;
+  // Other New Attributes
+  barcode?: string;
+  short_name?: string;
+  short_description?: string;
+  sub_category?: Types.ObjectId;
+  country_of_origin?: string;
+  brand?: string;
+  manufacturer?: string;
+  net_weight?: number;
+  gross_weight?: number;
+  unit_of_measure?: string;
+  pack_size?: string;
+  stock_measurement_unit?: Types.ObjectId;
+  packaging_type?: string;
+  dimensions_length?: number;
+  dimensions_width?: number;
+  dimensions_height?: number;
 }
 
 export interface ProductImages {
   image_url: string;
   image_order: number;
-  is_primary: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -62,10 +79,6 @@ const ProductSchema = new Schema<ProductAttributes>(
       type: String,
       required: true,
       maxlength: 5,
-    },
-    image_url: {
-      type: String,
-      maxlength: 500,
     },
     base_price: {
       type: Number,
@@ -123,6 +136,16 @@ const ProductSchema = new Schema<ProductAttributes>(
       type: Number,
       default: 0,
     },
+    primary_image_url: {
+      type: String,
+      required: true,
+      maxlength: 500,
+    },
+    primary_thumbnail_url: {
+      type: String,
+      required: true,
+      maxlength: 500,
+    },
     images: {
       type: [
         {
@@ -134,10 +157,6 @@ const ProductSchema = new Schema<ProductAttributes>(
           image_order: {
             type: Number,
             required: true,
-          },
-          is_primary: {
-            type: Boolean,
-            default: false,
           },
         },
       ],
@@ -155,13 +174,73 @@ const ProductSchema = new Schema<ProductAttributes>(
             type: Number,
             required: true,
           },
-          is_primary: {
-            type: Boolean,
-            default: false,
-          },
         },
       ],
       default: [],
+    },
+    stock_measurement_unit: {
+      type: Schema.Types.ObjectId,
+      ref: "Unit",
+    },
+    barcode: {
+      type: String,
+      maxlength: 100,
+    },
+    short_name: {
+      type: String,
+      maxlength: 100,
+    },
+    short_description: {
+      type: String,
+      maxlength: 500,
+    },
+    sub_category: {
+      type: Schema.Types.ObjectId,
+      ref: "SubCategory",
+    },
+    country_of_origin: {
+      type: String,
+      maxlength: 100,
+    },
+    brand: {
+      type: String,
+      maxlength: 100,
+    },
+    manufacturer: {
+      type: String,
+      maxlength: 100,
+    },
+    net_weight: {
+      type: Number,
+      min: 0,
+    },
+    gross_weight: {
+      type: Number,
+      min: 0,
+    },
+    unit_of_measure: {
+      type: String,
+      maxlength: 50,
+    },
+    pack_size: {
+      type: String,
+      maxlength: 50,
+    },
+    packaging_type: {
+      type: String,
+      maxlength: 100,
+    },
+    dimensions_length: {
+      type: Number,
+      min: 0,
+    },
+    dimensions_width: {
+      type: Number,
+      min: 0,
+    },
+    dimensions_height: {
+      type: Number,
+      min: 0,
     },
   },
   {

@@ -49,4 +49,10 @@ export type { WalletTransactionModel } from "./WalletTransaction";
 export { default as Ticket } from "./Ticket";
 export type { TicketModel } from "./Ticket";
 
+export { default as Tags } from "./Tags";
+export type { TagsModel } from "./Tags";
+
+export { default as MarketingCollection } from "./MarketingCollection";
+export type { MarketingCollectionModel } from "./MarketingCollection";
+
 export * from "./mappings";

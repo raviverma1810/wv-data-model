@@ -18,7 +18,7 @@ import { Schema, Types } from "mongoose";
     delivery_time?: string;
     delivery_status: "pending" | "shipped" | "delivered" | "cancelled";
     payment_method: "cod" | "online" | "wallet";
-    payment_status: "pending" | "paid" | "failed";
+    payment_status: "pending" | "paid" | "failed" | "cancelled";
     sub_total?: number;
     delivery_fee?: number;
     handling_fee?: number;
@@ -98,7 +98,7 @@ const OrderSchema = new Schema<OrderAttributes>(
     },
     payment_status: {
       type: String,
-      enum: ["pending", "paid", "failed"],
+      enum: ["pending", "paid", "failed", "cancelled"],
       default: "pending",
     },
     sub_total: {

@@ -11,6 +11,7 @@ export interface UnitAttributes {
   name: string;
   display_name: string;
   description?: string;
+  conversion_factor?: number;
   sub_units?: SubUnitAttributes[];
   status?: boolean;
   createdAt?: Date;
@@ -22,28 +23,28 @@ const subunitSchema = new Schema<SubUnitAttributes>(
     name: {
       type: String,
       required: true,
-      maxLength: 250
+      maxLength: 10,
     },
     calculation_factor: {
       type: Schema.Types.Decimal128,
       required: true,
-      max: 100000
+      max: 10,
     },
     status: {
       type: Boolean,
-      default: true
+      default: true,
     },
     index: {
       type: Number,
       required: true,
-      max: 1000
-    }
+      max: 1000,
+    },
   },
   {
     timestamps: true,
     toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-  }
+    toObject: { virtuals: true },
+  },
 );
 
 const UnitSchema = new Schema<UnitAttributes>(
@@ -52,28 +53,34 @@ const UnitSchema = new Schema<UnitAttributes>(
       type: String,
       required: true,
       unique: true,
-      maxlength: 250
+      maxlength: 100,
     },
     display_name: {
       type: String,
       required: true,
-      maxlength: 10
+      maxlength: 10,
     },
     description: {
       type: String,
-      default: "How to use this unit in product quantity:"
+      default: "How to use this unit in product quantity:",
+    },
+    conversion_factor: {
+      type: Number,
+      required: true,
+      default: 1,
+      max: 10000,
     },
     sub_units: [subunitSchema],
     status: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   {
     timestamps: true,
     toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-  }
+    toObject: { virtuals: true },
+  },
 );
 
 UnitSchema.post("save", async function (doc) {
@@ -82,13 +89,13 @@ UnitSchema.post("save", async function (doc) {
       {
         name: "1".concat(doc.display_name),
         calculation_factor: 1,
-        index: 99
+        index: 99,
       },
       {
         name: "2".concat(doc.display_name),
         calculation_factor: 2,
-        index: 100
-      }
+        index: 100,
+      },
     ];
     doc.sub_units = doc.sub_units ?? [];
     doc.sub_units.push(...subUnits);

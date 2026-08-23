@@ -24,11 +24,11 @@ export type { UserAttributes, UserRole } from "./UserSchema";
 
 export { default as CategoryAreaSchema } from "./CategoryAreaSchema";
 export type {
-	CategoryAreaAttributes,
-	CategoryAreaDocument,
-	CategoryAreaMethods,
-	CategoryAreaModel,
-	CategoryAreaStatics
+  CategoryAreaAttributes,
+  CategoryAreaDocument,
+  CategoryAreaMethods,
+  CategoryAreaModel,
+  CategoryAreaStatics,
 } from "./CategoryAreaSchema";
 
 export { default as ProductAreaSchema } from "./ProductAreaSchema";
@@ -63,3 +63,21 @@ export type { WalletTransactionAttributes } from "./WalletTransactionSchema";
 
 export { default as TicketSchema } from "./Tickets";
 export type { TicketAttributes } from "./Tickets";
+
+export { default as TagsSchema } from "./TagsSchema";
+export type { TagsAttributes } from "./TagsSchema";
+
+export { default as MarketingCollectionSchema } from "./MarketingCollectionSchema";
+export type { MarketingCollectionAttributes } from "./MarketingCollectionSchema";
+
+export { default as AreaMarketingCollectionSchema } from "./AreaMarketingCollectionSchema";
+export type { AreaMarketingCollectionAttributes } from "./AreaMarketingCollectionSchema";
+
+export { default as AreaTagSchema } from "./AreaTagSchema";
+export type { AreaTagAttributes } from "./AreaTagSchema";
+
+export { default as AreaHomeSectionSchema } from "./AreaHomeSectionSchema";
+export type { AreaHomeSectionAttributes, AreaHomeSectionType } from "./AreaHomeSectionSchema";
+
+export { default as AreaBannerSchema } from "./AreaBannerSchema";
+export type { AreaBannerAttributes } from "./AreaBannerSchema";

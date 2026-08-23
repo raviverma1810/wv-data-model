@@ -4,6 +4,7 @@ import { Schema } from "mongoose";
 
 export interface WalletTransactionAttributes {
   user_id: Schema.Types.ObjectId;
+  wallet_id: Schema.Types.ObjectId;
   transaction_type: "credit" | "debit";
   amount: number;
   label: string;
@@ -18,6 +19,11 @@ const WalletTransactionSchema = new Schema<WalletTransactionAttributes>(
     user_id: {
       type: Schema.Types.ObjectId,
       ref: "User",
+      required: true,
+    },
+    wallet_id: {
+      type: Schema.Types.ObjectId,
+      ref: "Wallet",
       required: true,
     },
     transaction_type: {
