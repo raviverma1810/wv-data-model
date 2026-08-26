@@ -20,9 +20,9 @@ export interface ProductAttributes {
   searchKeywords?: string[];
   sold_units?: number;
   primary_image_url: string;
-  images?: ProductImages[];
+  images?: string[];
   primary_thumbnail_url: string;
-  thumbnails?: ProductImages[];
+  thumbnails?: string[];
   createdAt?: Date;
   updatedAt?: Date;
   // Other New Attributes
@@ -147,35 +147,11 @@ const ProductSchema = new Schema<ProductAttributes>(
       maxlength: 500,
     },
     images: {
-      type: [
-        {
-          image_url: {
-            type: String,
-            required: true,
-            maxlength: 500,
-          },
-          image_order: {
-            type: Number,
-            required: true,
-          },
-        },
-      ],
+      type: [String],
       default: [],
     },
     thumbnails: {
-      type: [
-        {
-          image_url: {
-            type: String,
-            required: true,
-            maxlength: 500,
-          },
-          image_order: {
-            type: Number,
-            required: true,
-          },
-        },
-      ],
+      type: [String],
       default: [],
     },
     stock_measurement_unit: {
