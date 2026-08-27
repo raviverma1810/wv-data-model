@@ -1,35 +1,42 @@
 import { Schema, Types } from "mongoose";
 
-  export interface OrderAttributes {
-    user_id: Types.ObjectId;
-    city_id: Types.ObjectId;
-    pincode_id: Types.ObjectId;
-    area_id: Types.ObjectId;
-    store_id: Types.ObjectId;
-    address: {
-      label: string;
-      address: string;
-      landmark: string;
-      geo_latitude: number;
-      geo_longitude: number;
-    };
-    order_status: "placed" | "packed" | "dispatched" | "delivered" | "cancelled";
-    delivery_date?: Date;
-    delivery_time?: string;
-    delivery_status: "pending" | "shipped" | "delivered" | "cancelled";
-    payment_method: "cod" | "online" | "wallet";
-    payment_status: "pending" | "paid" | "failed" | "cancelled";
-    sub_total?: number;
-    delivery_fee?: number;
-    handling_fee?: number;
-    total_savings?: number;
-    total?: number;
-    remarks?: string;
-    cancelled_at?: Date;
-    cancellation_reason?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
-  }
+export interface OrderAttributes {
+  user_id: Types.ObjectId;
+  city_id: Types.ObjectId;
+  pincode_id: Types.ObjectId;
+  area_id: Types.ObjectId;
+  store_id: Types.ObjectId;
+  address: {
+    label: string;
+    address: string;
+    landmark: string;
+    geo_latitude: number;
+    geo_longitude: number;
+  };
+  order_status:
+    | "placed"
+    | "confirmed"
+    | "packed"
+    | "dispatched"
+    | "delivered"
+    | "cancelled";
+  delivery_slot?: Types.ObjectId;
+  delivery_date?: Date;
+  delivery_time?: string;
+  delivery_status: "pending" | "shipped" | "delivered" | "cancelled";
+  payment_method: "cod" | "online" | "wallet";
+  payment_status: "pending" | "paid" | "failed" | "cancelled";
+  sub_total?: number;
+  delivery_fee?: number;
+  handling_fee?: number;
+  total_savings?: number;
+  total?: number;
+  remarks?: string;
+  cancelled_at?: Date;
+  cancellation_reason?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
 
 const OrderSchema = new Schema<OrderAttributes>(
   {
@@ -77,8 +84,19 @@ const OrderSchema = new Schema<OrderAttributes>(
     },
     order_status: {
       type: String,
-      enum: ["placed", "packed", "dispatched", "delivered", "cancelled"],
+      enum: [
+        "placed",
+        "confirmed",
+        "packed",
+        "dispatched",
+        "delivered",
+        "cancelled",
+      ],
       default: "placed",
+    },
+    delivery_slot: {
+      type: Schema.Types.ObjectId,
+      ref: "AreaDeliverySlot",
     },
     delivery_date: {
       type: Date,

@@ -81,3 +81,6 @@ export type { AreaHomeSectionAttributes, AreaHomeSectionType } from "./AreaHomeS
 
 export { default as AreaBannerSchema } from "./AreaBannerSchema";
 export type { AreaBannerAttributes } from "./AreaBannerSchema";
+
+export { default as AreaDeliverySlotSchema } from "./AreaDeliverySlotSchema";
+export type { AreaDeliverySlotAttributes } from "./AreaDeliverySlotSchema";
