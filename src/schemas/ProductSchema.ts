@@ -1,4 +1,5 @@
 import { Schema, Types } from "mongoose";
+import { Area, ProductArea } from "../models/index";
 
 export interface ProductAttributes {
   name: string;
@@ -227,11 +228,7 @@ const ProductSchema = new Schema<ProductAttributes>(
 );
 
 ProductSchema.post("save", async function (doc) {
-  const ProductArea = (await import("../models/mappings/ProductArea.js"))
-    .default as any;
-
   if (doc.is_global) {
-    const Area = (await import("../models/Area.js")).default as any;
     const areas = await Area.find();
     const existingMappings = await ProductArea.find({
       product: doc._id,
@@ -255,7 +252,6 @@ ProductSchema.post("save", async function (doc) {
   if (!doc.status) {
     await ProductArea.deleteMany({ product: doc._id });
   } else if (doc.status && doc.is_global) {
-    const Area = (await import("../models/Area.js")).default as any;
     const areas = await Area.find();
     const existingMappings = await ProductArea.find({
       product: doc._id,
@@ -279,8 +275,6 @@ ProductSchema.post(
   "deleteOne",
   { document: true, query: false },
   async function (doc) {
-    const ProductArea = (await import("../models/mappings/ProductArea.js"))
-      .default as any;
     await ProductArea.deleteMany({ product: doc._id });
   },
 );
