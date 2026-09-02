@@ -37,7 +37,7 @@ const TagsSchema = new Schema<TagsAttributes>(
     },
     background_color: {
       type: String,
-      maxlength: 7,
+      maxlength: 250,
     },
     background_image_url: {
       type: String,
