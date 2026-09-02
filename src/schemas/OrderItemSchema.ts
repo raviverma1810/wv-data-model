@@ -6,6 +6,8 @@ export interface OrderItemAttributes {
   area_id: Types.ObjectId;
   store_id: Types.ObjectId;
   product_id: Types.ObjectId;
+  is_vendor_sourced?: boolean;
+  vendor_id?: Types.ObjectId; // Optional field to store the vendor ID if the item is vendor sourced
   name: string;
   name_local_language?: string;
   base_unit_id: Types.ObjectId;
@@ -50,7 +52,14 @@ const OrderItemSchema = new Schema<OrderItemAttributes>(
     name_local_language: {
       type: String,
     },
-
+    is_vendor_sourced: {
+      type: Boolean,
+      default: false,
+    },
+    vendor_id: {
+      type: Schema.Types.ObjectId,
+      ref: "Vendor",
+    },
     base_unit_id: {
       type: Schema.Types.ObjectId,
       ref: "Unit",

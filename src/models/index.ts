@@ -55,4 +55,10 @@ export type { TagsModel } from "./Tags";
 export { default as MarketingCollection } from "./MarketingCollection";
 export type { MarketingCollectionModel } from "./MarketingCollection";
 
+export { default as Vendor } from "./Vendor";
+export type { VendorModel } from "./Vendor";
+
+export { default as OrderDeliveryPartner } from "./OrderDeliveryPartner";
+export type { OrderDeliveryPartnerModel } from "./OrderDeliveryPartner";
+
 export * from "./mappings";

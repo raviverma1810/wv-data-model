@@ -23,9 +23,10 @@ export interface OrderAttributes {
   delivery_slot?: Types.ObjectId;
   delivery_date?: Date;
   delivery_time?: string;
-  delivery_status: "pending" | "shipped" | "delivered" | "cancelled";
+  delivery_status: "pending" | "shipped" | "delivered" | "returned" | "cancelled";
   payment_method: "cod" | "online" | "wallet";
   payment_status: "pending" | "paid" | "failed" | "cancelled";
+  payment_reference?: string;
   sub_total?: number;
   delivery_fee?: number;
   handling_fee?: number;
@@ -36,6 +37,7 @@ export interface OrderAttributes {
   cancellation_reason?: string;
   createdAt?: Date;
   updatedAt?: Date;
+  delivery_otp?: string;
 }
 
 const OrderSchema = new Schema<OrderAttributes>(
@@ -106,7 +108,7 @@ const OrderSchema = new Schema<OrderAttributes>(
     },
     delivery_status: {
       type: String,
-      enum: ["pending", "shipped", "delivered", "cancelled"],
+      enum: ["pending", "shipped", "delivered", "returned", "cancelled"],
       default: "pending",
     },
 
@@ -118,6 +120,9 @@ const OrderSchema = new Schema<OrderAttributes>(
       type: String,
       enum: ["pending", "paid", "failed", "cancelled"],
       default: "pending",
+    },
+    payment_reference: {
+      type: String,
     },
     sub_total: {
       type: Number,
@@ -147,6 +152,10 @@ const OrderSchema = new Schema<OrderAttributes>(
     cancellation_reason: {
       type: String,
       default: "",
+    },
+    delivery_otp: {
+      type: String,
+      maxlength: 10,
     },
   },
   {

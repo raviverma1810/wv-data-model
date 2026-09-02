@@ -61,7 +61,7 @@ const UserSchema = new Schema<UserAttributes>(
     },
     role: {
       type: String,
-      enum: ["user", "admin", "superadmin"],
+      enum: ["user", "admin", "superadmin", "vendor", "storeadmin", "ss.admin"],
       default: "user",
     },
     addressLabel: {

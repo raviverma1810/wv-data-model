@@ -23,6 +23,10 @@ export interface ProductAreaAttributes {
   minimum_stock_level: number;
   maximum_stock_level: number;
   reorder_level: number;
+  // vendor related attributes
+  is_vendor_sourced?: boolean;
+  vendor?: Types.ObjectId;
+  optional_vendor?: Types.ObjectId;
 }
 
 const ProductAreaSchema = new Schema<ProductAreaAttributes>(
@@ -42,7 +46,7 @@ const ProductAreaSchema = new Schema<ProductAreaAttributes>(
       required: true,
     },
     mrp: {
-      type: Number,
+      type: Number,  
       default: 0,
       maxlength: 5,
     },
@@ -104,6 +108,18 @@ const ProductAreaSchema = new Schema<ProductAreaAttributes>(
     reorder_level: {
       type: Number,
       default: 0,
+    },
+    is_vendor_sourced: {
+      type: Boolean,
+      default: false,
+    },
+    vendor: {
+      type: Schema.Types.ObjectId,
+      ref: "Vendor",
+    },
+    optional_vendor: {
+      type: Schema.Types.ObjectId,
+      ref: "Vendor",
     },
   },
   { timestamps: true },

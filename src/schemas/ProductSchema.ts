@@ -118,7 +118,7 @@ const ProductSchema = new Schema<ProductAttributes>(
       default: false,
     },
     tags: {
-      type: [String],
+      type: [{ type: Schema.Types.ObjectId, ref: "Tags" }],
       default: [],
     },
     similarity_tags: {

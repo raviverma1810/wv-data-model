@@ -84,3 +84,9 @@ export type { AreaBannerAttributes } from "./AreaBannerSchema";
 
 export { default as AreaDeliverySlotSchema } from "./AreaDeliverySlotSchema";
 export type { AreaDeliverySlotAttributes } from "./AreaDeliverySlotSchema";
+
+export { default as OrderDeliveryPartnerSchema } from "./OrderDeliveryPartnerSchema";
+export type { OrderDeliveryPartnerAttributes } from "./OrderDeliveryPartnerSchema";
+
+export { default as VendorSchema } from "./VendorSchema";
+export type { VendorAttributes } from "./VendorSchema";
