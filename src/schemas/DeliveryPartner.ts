@@ -107,6 +107,35 @@ const DeliveryPartnerSchema = new Schema<DeliveryPartnerAttributes>(
             type: Number,
             default: 0,
         },
+        bank_details: {
+            account_number: {
+                type: String,
+                required: true,
+                maxlength: 18,
+            },
+            ifsc_code: {
+                type: String,
+                required: true,
+                maxlength: 11,
+            },
+            bank_name: {
+                type: String,
+                required: true,
+                maxlength: 250,
+            },
+            branch_name: {
+                type: String,
+                required: true,
+                maxlength: 250,
+            },
+        },
+        upi_details: {
+            upi_id: {
+                type: String,
+                required: true,
+                maxlength: 250,
+            },
+        },
     },
     {
         timestamps: true,
