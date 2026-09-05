@@ -6,6 +6,8 @@ export interface DeliveryPartnerAttributes {
     name_hindi: string;
     phone: string;
     email: string;
+    password?: string;
+    profile_image?: string;
     address: string;
     city: Types.ObjectId;
     pincode: Types.ObjectId;
@@ -15,9 +17,18 @@ export interface DeliveryPartnerAttributes {
     vehicle_type: "bike" | "scooter" | "car" | "van" | "rikshaw" | "truck";
     admin_approved?: boolean;
     status?: boolean;
+    duty_status?: "online" | "offline" | "on_delivery";
     startedAt?: Date;
     endedAt?: Date;
     rating?: number;
+    current_latitude?: number;
+    current_longitude?: number;
+    last_location_updated_at?: Date;
+    emergency_contact?: {
+        name: string;
+        phone: string;
+        relation: string;
+    };
     bank_details?: {
         account_number: string;
         ifsc_code: string;
@@ -52,6 +63,14 @@ const DeliveryPartnerSchema = new Schema<DeliveryPartnerAttributes>(
             type: String,
             required: true,
             maxlength: 250,
+        },
+        password: {
+            type: String,
+            maxlength: 250,
+        },
+        profile_image: {
+            type: String,
+            maxlength: 500,
         },
         address: {
             type: String,
@@ -97,6 +116,11 @@ const DeliveryPartnerSchema = new Schema<DeliveryPartnerAttributes>(
             type: Boolean,
             default: true,
         },
+        duty_status: {
+            type: String,
+            enum: ["online", "offline", "on_delivery"],
+            default: "offline",
+        },
         startedAt: {
             type: Date,
         },
@@ -106,6 +130,29 @@ const DeliveryPartnerSchema = new Schema<DeliveryPartnerAttributes>(
         rating: {
             type: Number,
             default: 0,
+        },
+        current_latitude: {
+            type: Number,
+        },
+        current_longitude: {
+            type: Number,
+        },
+        last_location_updated_at: {
+            type: Date,
+        },
+        emergency_contact: {
+            name: {
+                type: String,
+                maxlength: 250,
+            },
+            phone: {
+                type: String,
+                maxlength: 15,
+            },
+            relation: {
+                type: String,
+                maxlength: 50,
+            },
         },
         bank_details: {
             account_number: {
