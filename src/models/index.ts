@@ -61,4 +61,7 @@ export type { VendorModel } from "./Vendor";
 export { default as OrderDeliveryPartner } from "./OrderDeliveryPartner";
 export type { OrderDeliveryPartnerModel } from "./OrderDeliveryPartner";
 
+export { default as Visitor } from "./Visitor";
+export type { VisitorModel } from "./Visitor";
+
 export * from "./mappings";

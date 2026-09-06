@@ -90,3 +90,6 @@ export type { OrderDeliveryPartnerAttributes } from "./OrderDeliveryPartnerSchem
 
 export { default as VendorSchema } from "./VendorSchema";
 export type { VendorAttributes } from "./VendorSchema";
+
+export { default as VisitorsSchema } from "./VisitersSchema";
+export type { IVisitor } from "./VisitersSchema";
