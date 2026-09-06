@@ -31,7 +31,7 @@ export interface IVisitor {
 }
 const VisitorSchema = new Schema<IVisitor>(
     {
-        visitorId: { type: String, default: "" },
+        visitorId: { type: String, default: "", index: true },
         ipAddress: { type: String, default: "" },
         country: { type: String, default: "" },
         city: { type: String, default: "" },
