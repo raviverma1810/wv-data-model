@@ -23,7 +23,12 @@ export interface OrderAttributes {
   delivery_slot?: Types.ObjectId;
   delivery_date?: Date;
   delivery_time?: string;
-  delivery_status: "pending" | "shipped" | "delivered" | "returned" | "cancelled";
+  delivery_status:
+    | "pending"
+    | "shipped"
+    | "delivered"
+    | "returned"
+    | "cancelled";
   payment_method: "cod" | "online" | "wallet";
   payment_status: "pending" | "paid" | "failed" | "cancelled";
   payment_reference?: string;
@@ -35,6 +40,8 @@ export interface OrderAttributes {
   remarks?: string;
   cancelled_at?: Date;
   cancellation_reason?: string;
+  receiver_name?: string;
+  receiver_phone?: string;
   createdAt?: Date;
   updatedAt?: Date;
   delivery_otp?: string;
@@ -150,6 +157,14 @@ const OrderSchema = new Schema<OrderAttributes>(
       type: Date,
     },
     cancellation_reason: {
+      type: String,
+      default: "",
+    },
+    receiver_name: {
+      type: String,
+      default: "",
+    },
+    receiver_phone: {
       type: String,
       default: "",
     },
