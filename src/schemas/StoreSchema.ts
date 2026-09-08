@@ -13,7 +13,12 @@ export interface StoreAttributes {
   owner_email: string;
   owner_phone: string;
   admin_approved?: boolean;
+  userid?: string;
+  password?: string;
+  delivery_radius?: number;
   status?: boolean;
+  likes?: number;
+  dislikes?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -78,9 +83,31 @@ const StoreSchema = new Schema<StoreAttributes>(
       type: Boolean,
       default: false,
     },
+    userid: {
+      type: String,
+      default: "",
+    },
+    password: {
+      type: String,
+      default: "",
+    },
+    delivery_radius: {
+      type: Number,
+      default: 3,
+      min: 1,
+      max: 2,
+    },
+    likes: {
+      type: Number,
+      default: 0,
+    },
+    dislikes: {
+      type: Number,
+      default: 0,
+    },
     status: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   {

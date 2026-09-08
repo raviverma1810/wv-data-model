@@ -65,3 +65,5 @@ export { default as Visitor } from "./Visitor";
 export type { VisitorModel } from "./Visitor";
 
 export * from "./mappings";
+
+export * from "./V2";

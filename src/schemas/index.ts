@@ -77,7 +77,10 @@ export { default as AreaTagSchema } from "./AreaTagSchema";
 export type { AreaTagAttributes } from "./AreaTagSchema";
 
 export { default as AreaHomeSectionSchema } from "./AreaHomeSectionSchema";
-export type { AreaHomeSectionAttributes, AreaHomeSectionType } from "./AreaHomeSectionSchema";
+export type {
+  AreaHomeSectionAttributes,
+  AreaHomeSectionType,
+} from "./AreaHomeSectionSchema";
 
 export { default as AreaBannerSchema } from "./AreaBannerSchema";
 export type { AreaBannerAttributes } from "./AreaBannerSchema";
@@ -93,3 +96,5 @@ export type { VendorAttributes } from "./VendorSchema";
 
 export { default as VisitorsSchema } from "./VisitersSchema";
 export type { IVisitor } from "./VisitersSchema";
+
+export * from "./V2";
