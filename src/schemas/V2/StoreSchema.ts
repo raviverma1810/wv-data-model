@@ -1,5 +1,5 @@
 import { Schema, Types } from "mongoose";
-import { coordinateValidator } from "./helpers";
+import { PointSchema } from "./helpers";
 
 export interface IStoreAttributes {
   name: string;
@@ -52,17 +52,8 @@ const StoreSchema = new Schema<IStoreAttributes>(
       trim: true,
     },
     location: {
-      type: {
-        type: String,
-        enum: ["Point"],
-        required: true,
-        default: "Point",
-      },
-      coordinates: {
-        type: [Number],
-        required: true,
-        validate: coordinateValidator,
-      },
+      type: PointSchema,
+      required: true,
     },
     addressLine1: {
       type: String,
@@ -131,7 +122,6 @@ const StoreSchema = new Schema<IStoreAttributes>(
       required: true,
       trim: true,
       unique: true,
-      index: true,
     },
     adminPassword: {
       type: String,
@@ -146,10 +136,6 @@ const StoreSchema = new Schema<IStoreAttributes>(
 
 StoreSchema.index({
   location: "2dsphere",
-});
-
-StoreSchema.index({
-  adminUserId: 1,
 });
 
 export default StoreSchema;

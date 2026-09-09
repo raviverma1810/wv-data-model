@@ -1,5 +1,5 @@
 import { Schema, Types } from "mongoose";
-import { coordinateValidator } from "./helpers";
+import { PointSchema } from "./helpers";
 
 export interface IAddressAttributes {
   // User details
@@ -38,17 +38,8 @@ const AddressSchema = new Schema<IAddressAttributes>(
     },
 
     location: {
-      type: {
-        type: String,
-        enum: ["Point"],
-        required: true,
-        default: "Point",
-      },
-      coordinates: {
-        type: [Number],
-        required: true,
-        validate: coordinateValidator,
-      },
+      type: PointSchema,
+      required: true,
     },
 
     addressLine1: {
@@ -92,7 +83,5 @@ const AddressSchema = new Schema<IAddressAttributes>(
 );
 
 AddressSchema.index({ location: "2dsphere" });
-
-AddressSchema.index({ userId: 1 });
 
 export default AddressSchema;

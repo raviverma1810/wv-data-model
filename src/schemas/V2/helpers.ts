@@ -1,3 +1,5 @@
+import { Schema } from "mongoose";
+
 export const coordinateValidator = {
   validator: function (value: number[]) {
     if (!Array.isArray(value) || value.length !== 2) {
@@ -20,3 +22,21 @@ export const coordinateValidator = {
   message:
     "Coordinates must be [longitude, latitude] and within valid geographic ranges",
 };
+
+export const PointSchema = new Schema(
+  {
+    type: {
+      type: String,
+      enum: ["Point"],
+      default: "Point",
+      required: true,
+    },
+    coordinates: {
+      type: [Number],
+      required: true,
+      validate: coordinateValidator,
+    },
+  },
+  { _id: false },
+);
+

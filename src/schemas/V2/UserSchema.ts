@@ -1,5 +1,5 @@
 import { Schema, Types } from "mongoose";
-import { coordinateValidator } from "./helpers";
+import { PointSchema } from "./helpers";
 
 export interface IUserAttributes {
   // Authentication
@@ -47,7 +47,6 @@ const UserSchema = new Schema<IUserAttributes>(
     mobile: {
       type: String,
       default: null,
-      index: true,
     },
 
     isGuest: {
@@ -69,7 +68,6 @@ const UserSchema = new Schema<IUserAttributes>(
       type: String,
       required: true,
       unique: true,
-      index: true,
     },
 
     deviceId: {
@@ -84,7 +82,7 @@ const UserSchema = new Schema<IUserAttributes>(
     },
 
     cartId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Cart",
       default: null,
     },
@@ -113,15 +111,7 @@ const UserSchema = new Schema<IUserAttributes>(
     },
 
     currentLocation: {
-      type: {
-        type: String,
-        enum: ["Point"],
-        default: "Point",
-      },
-      coordinates: {
-        type: [Number],
-        validate: coordinateValidator,
-      },
+      type: PointSchema,
       default: null,
     },
 
