@@ -6,3 +6,6 @@ export type { AddressModelV2 } from "./Address";
 
 export { default as StoreV2 } from "./Store";
 export type { StoreModelV2 } from "./Store";
+
+export { default as ProductStoreV2 } from "./StoreProduct";
+export type { ProductStoreModelV2 } from "./StoreProduct";
