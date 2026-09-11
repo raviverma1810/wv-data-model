@@ -46,8 +46,8 @@ const UserSchema = new Schema<IUserAttributes>(
   {
     mobile: {
       type: String,
-      default: null,
     },
+
 
     isGuest: {
       type: Boolean,
@@ -157,9 +157,10 @@ UserSchema.index(
   { mobile: 1 },
   {
     unique: true,
-    sparse: true,
+    partialFilterExpression: { mobile: { $type: "string" } },
   },
 );
+
 
 UserSchema.index({
   currentStoreId: 1,

@@ -15,6 +15,8 @@ const WalletSchema = new Schema<WalletAttributes>(
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
+      unique: true,
+      index: true,
     },
     balance: {
       type: Number,
