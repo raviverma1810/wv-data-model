@@ -1,5 +1,4 @@
 import { Schema, Types } from "mongoose";
-import { Area, ProductArea } from "../models/index";
 
 export interface ProductAttributes {
   name: string;
@@ -224,58 +223,6 @@ const ProductSchema = new Schema<ProductAttributes>(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  },
-);
-
-ProductSchema.post("save", async function (doc) {
-  if (doc.is_global) {
-    const areas = await Area.find();
-    const existingMappings = await ProductArea.find({
-      product: doc._id,
-      area: { $in: areas.map((area: { _id: Types.ObjectId }) => area._id) },
-    });
-
-    if (existingMappings.length === 0) {
-      const productAreaMappings = areas.map(
-        (area: { _id: Types.ObjectId; name_hindi: string }) => ({
-          product: doc._id,
-          area: area._id,
-          name_local_language: doc.name_hindi,
-          mrp: doc.base_price,
-          price: doc.base_price,
-        }),
-      );
-      await ProductArea.insertMany(productAreaMappings);
-    }
-  }
-
-  if (!doc.status) {
-    await ProductArea.deleteMany({ product: doc._id });
-  } else if (doc.status && doc.is_global) {
-    const areas = await Area.find();
-    const existingMappings = await ProductArea.find({
-      product: doc._id,
-      area: { $in: areas.map((area: { _id: Types.ObjectId }) => area._id) },
-    });
-
-    if (existingMappings.length === 0) {
-      const productAreaMappings = areas.map(
-        (area: { _id: Types.ObjectId; name_hindi: string }) => ({
-          product: doc._id,
-          area: area._id,
-          name_local_language: doc.name_hindi,
-        }),
-      );
-      await ProductArea.insertMany(productAreaMappings);
-    }
-  }
-});
-
-ProductSchema.post(
-  "deleteOne",
-  { document: true, query: false },
-  async function (doc) {
-    await ProductArea.deleteMany({ product: doc._id });
   },
 );
 

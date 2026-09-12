@@ -3,7 +3,7 @@ import OrderItem from "../models/OrderItem.js";
 
 export interface OrderItemAttributes {
   order_id: Types.ObjectId;
-  area_id: Types.ObjectId;
+  area_id?: Types.ObjectId;
   store_id: Types.ObjectId;
   product_id: Types.ObjectId;
   is_vendor_sourced?: boolean;
@@ -33,11 +33,11 @@ const OrderItemSchema = new Schema<OrderItemAttributes>(
     area_id: {
       type: Schema.Types.ObjectId,
       ref: "Area",
-      required: true,
+      required: false,
     },
     store_id: {
       type: Schema.Types.ObjectId,
-      ref: "Store",
+      ref: "StoreV2",
       required: true,
     },
     product_id: {

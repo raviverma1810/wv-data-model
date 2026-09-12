@@ -13,7 +13,7 @@ const WalletSchema = new Schema<WalletAttributes>(
   {
     user_id: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "UserV2",
       required: true,
       unique: true,
       index: true,

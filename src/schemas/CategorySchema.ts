@@ -1,5 +1,4 @@
-import { Schema, Types } from "mongoose";
-import { Area, CategoryArea } from "../models//index";
+import { Schema } from "mongoose";
 
 export interface CategoryAttributes {
   name: string;
@@ -64,35 +63,5 @@ const CategorySchema = new Schema<CategoryAttributes>(
     toObject: { virtuals: true },
   },
 );
-
-CategorySchema.post("save", async function (doc) {
-  if (!doc.is_global) {
-    return;
-  }
-
-  const areas = await Area.find();
-  const existingMappings = await CategoryArea.find({
-    category: doc._id,
-    area: { $in: areas.map((area: { _id: Types.ObjectId }) => area._id) },
-  });
-
-  if (existingMappings.length > 0) {
-    return;
-  }
-
-  const categoryAreaMappings = areas.map((area: { _id: Types.ObjectId }) => ({
-    category: doc._id,
-    area: area._id,
-  }));
-
-  await CategoryArea.insertMany(categoryAreaMappings);
-});
-
-CategorySchema.post("findOneAndUpdate", async function (doc) {
-  if (!doc || doc.status !== false) {
-    return;
-  }
-  await CategoryArea.updateMany({ category: doc._id }, { status: false });
-});
 
 export default CategorySchema;

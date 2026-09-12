@@ -2,9 +2,9 @@ import { Schema, Types } from "mongoose";
 
 export interface OrderAttributes {
   user_id: Types.ObjectId;
-  city_id: Types.ObjectId;
-  pincode_id: Types.ObjectId;
-  area_id: Types.ObjectId;
+  city_id?: Types.ObjectId;
+  pincode_id?: Types.ObjectId;
+  area_id?: Types.ObjectId;
   store_id: Types.ObjectId;
   address: {
     label: string;
@@ -51,7 +51,7 @@ const OrderSchema = new Schema<OrderAttributes>(
   {
     user_id: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "UserV2",
     },
     city_id: {
       type: Schema.Types.ObjectId,
@@ -67,7 +67,7 @@ const OrderSchema = new Schema<OrderAttributes>(
     },
     store_id: {
       type: Schema.Types.ObjectId,
-      ref: "Store",
+      ref: "StoreV2",
     },
     address: {
       label: {

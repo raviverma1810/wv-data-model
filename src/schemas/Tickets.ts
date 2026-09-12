@@ -21,7 +21,7 @@ const TicketSchema = new Schema<TicketAttributes>(
   {
     user_id: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "UserV2",
     },
     subject: {
       type: String,
@@ -54,7 +54,7 @@ const TicketSchema = new Schema<TicketAttributes>(
     },
     assigned_to: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "UserV2",
     },
     resolved_at: {
       type: Date,

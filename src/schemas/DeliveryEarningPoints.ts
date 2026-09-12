@@ -19,7 +19,7 @@ const DeliveryEarningPointsSchema = new Schema<DeliveryEarningPointsAttributes>(
   {
     store_id: {
       type: Schema.Types.ObjectId,
-      ref: "Store",
+      ref: "StoreV2",
       required: true,
     },
     delivery_partner: {

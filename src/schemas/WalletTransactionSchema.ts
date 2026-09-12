@@ -18,7 +18,7 @@ const WalletTransactionSchema = new Schema<WalletTransactionAttributes>(
   {
     user_id: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "UserV2",
       required: true,
     },
     wallet_id: {

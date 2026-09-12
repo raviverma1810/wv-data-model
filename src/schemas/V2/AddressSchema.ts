@@ -13,9 +13,9 @@ export interface IAddressAttributes {
   };
   addressLine1: string;
   addressLine2?: string;
-  city: string;
-  state: string;
-  pincode: string;
+  city?: string;
+  state?: string;
+  pincode?: string;
   isDefault: boolean;
   // Timestamps
   createdAt: Date;
@@ -26,7 +26,7 @@ const AddressSchema = new Schema<IAddressAttributes>(
   {
     userId: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "UserV2",
       required: true,
       index: true,
     },
@@ -56,20 +56,23 @@ const AddressSchema = new Schema<IAddressAttributes>(
 
     city: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
+      default: "",
     },
 
     state: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
+      default: "",
     },
 
     pincode: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
+      default: "",
     },
 
     isDefault: {

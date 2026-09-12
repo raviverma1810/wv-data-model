@@ -9,8 +9,8 @@ export interface DeliveryPartnerAttributes {
     password?: string;
     profile_image?: string;
     address: string;
-    city: Types.ObjectId;
-    pincode: Types.ObjectId;
+    city?: Types.ObjectId;
+    pincode?: Types.ObjectId;
     area?: Types.ObjectId;
     store: Types.ObjectId;
     vehicle_number: string;
@@ -80,12 +80,12 @@ const DeliveryPartnerSchema = new Schema<DeliveryPartnerAttributes>(
         city: {
             type: Schema.Types.ObjectId,
             ref: "City",
-            required: true,
+            required: false,
         },
         pincode: {
             type: Schema.Types.ObjectId,
             ref: "Pincode",
-            required: true,
+            required: false,
         },
         area: {
             type: Schema.Types.ObjectId,

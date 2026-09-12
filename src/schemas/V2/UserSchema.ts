@@ -89,13 +89,13 @@ const UserSchema = new Schema<IUserAttributes>(
 
     currentStoreId: {
       type: Schema.Types.ObjectId,
-      ref: "Store",
+      ref: "StoreV2",
       default: null,
     },
 
     lastStoreId: {
       type: Schema.Types.ObjectId,
-      ref: "Store",
+      ref: "StoreV2",
       default: null,
     },
 

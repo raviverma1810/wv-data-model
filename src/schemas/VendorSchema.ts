@@ -7,9 +7,11 @@ export interface VendorAttributes {
   display_name: string;
   name_local_language?: string;
   name_hindi: string;
-  city: Types.ObjectId;
-  pincode: Types.ObjectId;
-  area: Types.ObjectId;
+  city?: Types.ObjectId;
+  pincode?: Types.ObjectId;
+  area?: Types.ObjectId;
+  store?: Types.ObjectId;
+  store_id?: Types.ObjectId;
   geo_latitude: number;
   geo_longitude: number;
   address: string;
@@ -41,9 +43,11 @@ const VendorSchema = new Schema<VendorAttributes>(
     display_name: { type: String, required: true },
     name_local_language: { type: String },
     name_hindi: { type: String, required: true },
-    city: { type: Types.ObjectId, required: true },
-    pincode: { type: Types.ObjectId, required: true },
-    area: { type: Types.ObjectId, required: true },
+    city: { type: Schema.Types.ObjectId, ref: "City", required: false },
+    pincode: { type: Schema.Types.ObjectId, ref: "Pincode", required: false },
+    area: { type: Schema.Types.ObjectId, ref: "Area", required: false },
+    store: { type: Schema.Types.ObjectId, ref: "StoreV2", required: false },
+    store_id: { type: Schema.Types.ObjectId, ref: "StoreV2", required: false },
     geo_latitude: { type: Number, required: true },
     geo_longitude: { type: Number, required: true },
     address: { type: String, required: true },
