@@ -32,7 +32,6 @@ const OrderItemSchema = new Schema<OrderItemAttributes>(
     },
     area_id: {
       type: Schema.Types.ObjectId,
-      ref: "Area",
       required: false,
     },
     store_id: {

@@ -13,8 +13,8 @@ export interface IStoreAttributes {
   };
   addressLine1: string;
   addressLine2?: string;
-  city?: Types.ObjectId | null;
-  pincode?: Types.ObjectId | null;
+  city?: string | Types.ObjectId | null;
+  pincode?: string | Types.ObjectId | null;
   deliveryRadiusKm: number;
 
   // Contact details
@@ -66,13 +66,11 @@ const StoreSchema = new Schema<IStoreAttributes>(
       default: "",
     },
     city: {
-      type: Schema.Types.ObjectId,
-      ref: "City",
+      type: Schema.Types.Mixed,
       required: false,
     },
     pincode: {
-      type: Schema.Types.ObjectId,
-      ref: "Pincode",
+      type: Schema.Types.Mixed,
       required: false,
     },
     deliveryRadiusKm: {

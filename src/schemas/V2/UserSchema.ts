@@ -2,7 +2,10 @@ import { Schema, Types } from "mongoose";
 import { PointSchema } from "./helpers";
 
 export interface IUserAttributes {
-  // Authentication
+  // Authentication & Credentials
+  email?: string | null;
+  password?: string | null;
+  role?: string;
   mobile: string | null; // null for guest
   isGuest: boolean; // true initially
   isVerified: boolean; // false initially
@@ -44,10 +47,27 @@ export interface IUserAttributes {
 
 const UserSchema = new Schema<IUserAttributes>(
   {
+    email: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      default: null,
+      index: true,
+    },
+
+    password: {
+      type: String,
+      default: null,
+    },
+
+    role: {
+      type: String,
+      default: "user",
+    },
+
     mobile: {
       type: String,
     },
-
 
     isGuest: {
       type: Boolean,

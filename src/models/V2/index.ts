@@ -18,3 +18,6 @@ export type { StoreBannerModel } from "./StoreBanner";
 
 export { default as StoreHomeSection } from "./StoreHomeSection";
 export type { StoreHomeSectionModel } from "./StoreHomeSection";
+
+export { default as SubCategory } from "./SubCategory";
+export type { SubCategoryModel } from "./SubCategory";

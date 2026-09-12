@@ -51,7 +51,7 @@
     "node": ">=18"
   },
   "peerDependencies": {
-    "mongoose": "^9.7.3"
+    "mongoose": "^9.10.0"
   },
   "publishConfig": {
     "access": "public"

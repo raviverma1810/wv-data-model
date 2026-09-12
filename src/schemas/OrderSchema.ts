@@ -55,15 +55,15 @@ const OrderSchema = new Schema<OrderAttributes>(
     },
     city_id: {
       type: Schema.Types.ObjectId,
-      ref: "City",
+      required: false,
     },
     pincode_id: {
       type: Schema.Types.ObjectId,
-      ref: "Pincode",
+      required: false,
     },
     area_id: {
       type: Schema.Types.ObjectId,
-      ref: "Area",
+      required: false,
     },
     store_id: {
       type: Schema.Types.ObjectId,
@@ -105,7 +105,8 @@ const OrderSchema = new Schema<OrderAttributes>(
     },
     delivery_slot: {
       type: Schema.Types.ObjectId,
-      ref: "AreaDeliverySlot",
+      ref: "StoreDeliverySlot",
+      required: false,
     },
     delivery_date: {
       type: Date,

@@ -79,17 +79,14 @@ const DeliveryPartnerSchema = new Schema<DeliveryPartnerAttributes>(
         },
         city: {
             type: Schema.Types.ObjectId,
-            ref: "City",
             required: false,
         },
         pincode: {
             type: Schema.Types.ObjectId,
-            ref: "Pincode",
             required: false,
         },
         area: {
             type: Schema.Types.ObjectId,
-            ref: "Area",
             required: false,
         },
         store: {
