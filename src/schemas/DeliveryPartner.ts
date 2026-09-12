@@ -11,7 +11,7 @@ export interface DeliveryPartnerAttributes {
     address: string;
     city: Types.ObjectId;
     pincode: Types.ObjectId;
-    area: Types.ObjectId;
+    area?: Types.ObjectId;
     store: Types.ObjectId;
     vehicle_number: string;
     vehicle_type: "bike" | "scooter" | "car" | "van" | "rikshaw" | "truck";
@@ -90,11 +90,11 @@ const DeliveryPartnerSchema = new Schema<DeliveryPartnerAttributes>(
         area: {
             type: Schema.Types.ObjectId,
             ref: "Area",
-            required: true,
+            required: false,
         },
         store: {
             type: Schema.Types.ObjectId,
-            ref: "Store",
+            ref: "StoreV2",
             required: true,
         },
         vehicle_number: {

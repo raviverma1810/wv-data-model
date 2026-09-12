@@ -4,6 +4,8 @@ import { Schema, Types } from "mongoose";
 
 export interface IVisitor {
     visitorId?: string;
+    name?: string;
+    mobile?: string;
     ipAddress?: string;
     country?: string;
     city?: string;
@@ -32,6 +34,8 @@ export interface IVisitor {
 const VisitorSchema = new Schema<IVisitor>(
     {
         visitorId: { type: String, default: "", index: true },
+        name: { type: String, default: "" },
+        mobile: { type: String, default: "" },
         ipAddress: { type: String, default: "" },
         country: { type: String, default: "" },
         city: { type: String, default: "" },

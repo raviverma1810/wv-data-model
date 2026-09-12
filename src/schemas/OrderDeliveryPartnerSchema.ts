@@ -58,7 +58,7 @@ const OrderDeliveryPartnerSchema = new Schema<OrderDeliveryPartnerAttributes>(
     },
 
     assigned_at: { type: Date },
-    assigned_by: { type: Types.ObjectId, ref: "Store" },
+    assigned_by: { type: Types.ObjectId, ref: "StoreV2" },
 
     returned_at: { type: Date },
     picked_up_at: { type: Date },
