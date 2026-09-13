@@ -40,6 +40,10 @@ export interface IUserAttributes {
   lastActiveAt: Date | null;
   registeredAt: Date | null;
 
+  // restrictions
+  codEnabled?: boolean;
+  canPlaceOrder?: boolean;
+
   // Timestamps
   createdAt: Date;
   updatedAt: Date;
@@ -161,6 +165,15 @@ const UserSchema = new Schema<IUserAttributes>(
       type: Date,
       default: null,
     },
+
+    codEnabled: {
+      type: Boolean,
+      default: true,
+    },
+    canPlaceOrder: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
@@ -180,7 +193,6 @@ UserSchema.index(
     partialFilterExpression: { mobile: { $type: "string" } },
   },
 );
-
 
 UserSchema.index({
   currentStoreId: 1,

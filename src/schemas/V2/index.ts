@@ -24,3 +24,23 @@ export type {
   IStoreHomeSectionAttributes,
   StoreHomeSectionType,
 } from "./StoreHomeSectionSchema";
+
+export { default as ServiceAreaRequestSchema } from "./ServiceAreaRequestSchema";
+export type {
+  IServiceAreaRequestAttributes,
+  AdminServiceAreaStatus,
+} from "./ServiceAreaRequestSchema";
+
+export { default as FranchiseInquirySchema } from "./FranchiseInquirySchema";
+export type {
+  IFranchiseInquiryAttributes,
+  FranchiseInquiryStatus,
+  CommercialSpaceStatus,
+} from "./FranchiseInquirySchema";
+
+export { default as CitySchema } from "./CitySchema";
+export type { ICityAttributes } from "./CitySchema";
+
+export { default as PincodeSchema } from "./PincodeSchema";
+export type { IPincodeAttributes } from "./PincodeSchema";
+

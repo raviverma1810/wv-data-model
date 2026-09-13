@@ -66,11 +66,13 @@ const StoreSchema = new Schema<IStoreAttributes>(
       default: "",
     },
     city: {
-      type: Schema.Types.Mixed,
+      type: Schema.Types.ObjectId,
+      ref: "City",
       required: false,
     },
     pincode: {
-      type: Schema.Types.Mixed,
+      type: Schema.Types.ObjectId,
+      ref: "Pincode",
       required: false,
     },
     deliveryRadiusKm: {

@@ -21,3 +21,16 @@ export type { StoreHomeSectionModel } from "./StoreHomeSection";
 
 export { default as SubCategory } from "./SubCategory";
 export type { SubCategoryModel } from "./SubCategory";
+
+export { default as ServiceAreaRequest } from "./ServiceAreaRequest";
+export type { ServiceAreaRequestModel } from "./ServiceAreaRequest";
+
+export { default as FranchiseInquiry } from "./FranchiseInquiry";
+export type { FranchiseInquiryModel } from "./FranchiseInquiry";
+
+export { default as City } from "./City";
+export type { CityModel } from "./City";
+
+export { default as Pincode } from "./Pincode";
+export type { PincodeModel } from "./Pincode";
+
