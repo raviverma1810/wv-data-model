@@ -44,3 +44,8 @@ export type { ICityAttributes } from "./CitySchema";
 export { default as PincodeSchema } from "./PincodeSchema";
 export type { IPincodeAttributes } from "./PincodeSchema";
 
+export { default as FAQSchema } from "./FAQSchema";
+export type { IFAQAttributes } from "./FAQSchema";
+
+export { default as AppConfigSchema } from "./AppConfigSchema";
+export type { IAppConfigAttributes } from "./AppConfigSchema";

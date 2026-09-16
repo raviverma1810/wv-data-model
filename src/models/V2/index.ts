@@ -34,3 +34,9 @@ export type { CityModel } from "./City";
 export { default as Pincode } from "./Pincode";
 export type { PincodeModel } from "./Pincode";
 
+export { default as FAQ } from "./FAQ";
+export { default as Faq } from "./FAQ";
+export type { FAQModel, FAQModel as FaqModel } from "./FAQ";
+
+export { default as AppConfig } from "./AppConfig";
+export type { AppConfigModel } from "./AppConfig";
